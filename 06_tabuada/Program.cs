@@ -6,16 +6,31 @@ namespace _06_tabuada
     {
         static void Main(string[] args)
         {
-            int numero;
+            int multiplicando = 0, produto;
+            bool digitacaoValida = false;
+            //!negação inverte o valor boleano
+            //!false = true
+            //!true = false
+            //while ( digitacaoValida
 
-            Console.Write("Digite um número inteiro: ");
-            numero = int.Parse(Console.ReadLine());
-
-            // Loop de 1 até 10 para mostrar a tabuada
-            for (int i = 1; i <= 10; i++)
+            while (!digitacaoValida)
             {
-                Console.WriteLine(numero + " x " + i + " = " + (numero * i));
+
+                Console.Write("Digite um número inteiro: ");
+                digitacaoValida = int.TryParse(Console.ReadLine(), out multiplicando);
             }
+                // console.Whiteline("TABUADA DO {0}", multiplicando);
+                //interpolação de string $
+
+                Console.WriteLine($"TABUADA DO{multiplicando}");
+                for (int multiplicador = 1; multiplicador <= 10; multiplicador++) 
+                {
+                    produto = multiplicando * multiplicador; 
+                    //console.WhiteLine("{0} x {1} =  ", multiplicando, multiplicador produto                   
+                    Console.WriteLine($"{multiplicando} x { multiplicador} = { produto }");
+                }
+
+                
 
          
         }
