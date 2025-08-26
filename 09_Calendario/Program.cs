@@ -110,7 +110,69 @@ namespace _09_Calendario
                 feriados[indice++] = 20;
             }
             else if (mes == 12) feriados[indice++] = 25; // Natal
+
+            DateTime pascoa = DomingoDePascoa(ano);
+            DateTime carnaval = pascoa.AddDays(-47);
+            DateTime sextaFeiraSanta = pascoa.AddDays(-2);
+            DateTime corpusChristi = pascoa.AddDays(60);
+
+            if (carnaval.Month == mes) feriados[indice++] = carnaval.Day;
+            if (sextaFeiraSanta.Month == mes) feriados[indice++] = sextaFeiraSanta.Day;
+            if (pascoa.Month == mes) feriados[indice++] = pascoa.Day;
+            if (corpusChristi.Month == mes) feriados[indice++] = corpusChristi.Day;
+
             return feriados;
+        }
+
+
+        public static DateTime DomingoDePascoa(int ano)
+        {
+            int X = 0, Y = 0;
+
+            if (ano <= 1699) { X = 22; Y = 2; }
+            else if (ano <= 1799) { X = 23; Y = 3; }
+            else if (ano <= 1899) { X = 24; Y = 4; }
+            else if (ano <= 2099) { X = 24; Y = 5; }
+            else if (ano <= 2199) { X = 24; Y = 6; }
+            else if (ano <= 2299) { X = 24; Y = 7; }
+
+            int a = ano % 19;
+            int b = ano % 4;
+            int c = ano % 7;
+            int d = (19 * a + X) % 30;
+            int g = (2 * b + 4 * c + 6 * d + Y) % 7;
+
+            int dia, mes;
+
+            if (d + g > 9)
+            {
+                dia = d + g - 9;
+                mes = 4; // Abril
+            }
+            else
+            {
+                dia = d + g + 22;
+                mes = 3; // Março
+            }
+
+            // Corrigindo a mensagem para exibir as datas corretamente
+            DateTime pascoa = new DateTime(ano, mes, dia);
+            DateTime carnaval = pascoa.AddDays(-47);
+            DateTime sextaSanta = pascoa.AddDays(-2);
+            DateTime corpusChristi = pascoa.AddDays(60);
+            return pascoa;
+            Console.WriteLine($"O Domingo de Páscoa em {pascoa:dd/MM/yyyy}");
+            Console.WriteLine($"A Terça-feira de carnaval ocorre em {carnaval:dd/MM/yyyy}");
+            Console.WriteLine($"A Sexta-feira santa ocorre em {sextaSanta:dd/MM/yyyy}");
+            Console.WriteLine($"Corpus Christi ocorre em {corpusChristi:dd/MM/yyyy}");
+
         }
     }
 }
+
+    
+
+
+
+    
+
