@@ -12,11 +12,10 @@ namespace _09_Calendario
             Console.Write("Digite o ano:");
             int ano = int.Parse(Console.ReadLine());
 
-            
-            ImprimeCalendario(mes, ano);
+            GerarCalendario(mes, ano);
 
             // for (int mes = 1; mes <== 12; mes++)  isso é para ele ficar fazendo um loop e imprimindo todos os meses do ano
-            Console.WriteLine("\n\nDeseja ver o ano inteiro? (S/N): ");
+            Console.WriteLine("\n\n Deseja ver o ano inteiro? (S/N): ");
             string opcao = Console.ReadLine().ToUpper();
 
             if (opcao == "S")
@@ -28,9 +27,13 @@ namespace _09_Calendario
                 }
                 Console.ReadKey();
             }
-           }
+        }
 
-        
+        private static void GerarCalendario(int mes, int ano)
+        {
+            ImprimeCalendario(mes, ano);
+        }
+
         public static void ImprimeCalendario(int mes, int ano)
         {
             int diasDoMes = DateTime.DaysInMonth(ano, mes);
@@ -101,10 +104,10 @@ namespace _09_Calendario
                     Console.Write(f + " ");
                 }
             }
-            Console.WriteLine("\n");
+            Console.WriteLine("\n\n");
         }
 
-        
+
         public static int[] RetornaFeriados(int mes, int ano)
         {
             int[] feriados = new int[10];
@@ -165,14 +168,14 @@ namespace _09_Calendario
                 dia = d + g + 22;
                 mes = 3;
             }
-            
-  
-                    return new DateTime(ano, mes, dia);
-                
-                
 
 
-            }
+            return new DateTime(ano, mes, dia);
+
+
+
+
+        }
     }
 }
 
